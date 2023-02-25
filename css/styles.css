@@ -120,6 +120,9 @@ p {
     color: var(--primary-text-color);
     text-decoration: none;
     position: relative;
+    transition-property: color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link.active {
@@ -133,7 +136,7 @@ p {
     height: 4px;
     background-color: var(--btn-accent);
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     border-radius: 2px;
 }
@@ -159,22 +162,20 @@ p {
     letter-spacing: 0.02em;
     color: var(--text-color-secondary);
     text-decoration: none;
+    transition-property: color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link:hover,
 .nav-link:focus {
     color: var(--btn-accent);
-    transition-property: color;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 .address-link:hover,
 .address-link:focus {
     color: var(--btn-accent);
-    transition-property: color;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* hero */
@@ -222,71 +223,16 @@ p {
     background-color: var(--btn-accent);
 
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+    transition-property: color, background-color, box-shadow;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-button:hover,
 .hero-button:focus {
     background-color: var(--btn-primary);
-    transition-property: background-color;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-.backdrop-hero {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(46, 47, 66, 0.4);
-    opacity: 1;
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    visibility: visible;
-    pointer-events: none;
-}
-
-.backdrop-hero.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.backdrop-hero.is-hidden .modal-hero {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.modal-hero {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-
-    width: 408px;
-    height: 576px;
-
-
-    background: #FCFCFC;
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-}
-
-.hero-button-close {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    border-radius: 12px;
-
-
-    width: 24px;
-    height: 24px;
-
-    background: #E7E9FC;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.modal-hero-icon {}
 
 /* section 2 */
 
@@ -439,14 +385,15 @@ p {
     height: 40px;
     border-radius: 50%;
     background-color: var(--btn-primary);
+    transition-property: background-color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-socials-link:hover,
 .team-socials-link:focus {
     background-color: var(--btn-accent);
-    transition-property: background-color;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 .team-socials-icon {
@@ -476,6 +423,9 @@ p {
     border: 1px solid var(--customers);
     border-radius: 4px;
     color: var(--customers);
+    transition-property: color, border;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .customer-list:not(:last-child) {
@@ -490,9 +440,7 @@ p {
 .customer-lis-link:focus {
     color: var(--btn-accent);
     border: 1px solid var(--btn-accent);
-    transition-property: color, border;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 
@@ -549,18 +497,75 @@ p {
     height: 40px;
     border-radius: 50%;
     background-color: var(--footer-social-link);
-}
-
-.footer-socials-link:hover,
-.footer-socials-link:focus {
-    background-color: var(--footer-social-link-hoover);
     transition-property: background-color;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.footer-socials-link:hover,
+.footer-socials-link:focus {
+    background-color: var(--footer-social-link-hoover);
+}
+
 .footer-socials-icon {
     fill: var(--background-secondary);
+}
+
+/* backdrop and modal */
+
+.backdrop-hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 47, 66, 0.4);
+    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop-hero.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.backdrop-hero.is-hidden .modal-hero {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+
+    width: 408px;
+    height: 576px;
+
+
+    background: #FCFCFC;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.hero-button-close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    border-radius: 12px;
+
+
+    width: 24px;
+    height: 24px;
+
+    background: #E7E9FC;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 /* Portfolio html */
@@ -594,6 +599,10 @@ p {
     color: var(--btn-accent);
     background-color: var(--background-primary);
     border: 1px solid #E7E9FC;
+    transition-property: box-shadow, color, background-color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 .filter-btn:hover,
@@ -602,9 +611,6 @@ p {
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
     color: var(--text-white);
     background-color: var(--btn-primary);
-    transition-property: box-shadow, color, background-color;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
 }
 
@@ -632,14 +638,15 @@ p {
     display: block;
     max-width: 100%;
     height: auto;
+    transition-property: box-shadow;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .filter-list-link:hover,
 .filter-list-link:focus {
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
-    transition-property: box-shadow;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 
 
